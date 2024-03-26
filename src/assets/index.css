@@ -1,0 +1,36 @@
+@import './base.css';
+body,
+html {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  color: initial;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.col-center {
+  align-items: center;
+}
+
+.row-center {
+  justify-content: center;
+}

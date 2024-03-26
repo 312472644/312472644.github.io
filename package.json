@@ -9,11 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "primevue": "^3.50.0",
+    "vue": "^3.4.21"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
-    "vite": "^5.1.6"
+    "primeicons": "^6.0.1",
+    "unplugin-vue-components": "^0.26.0",
+    "vite": "^5.1.6",
+    "vue-router": "^4.3.0"
   }
 }
