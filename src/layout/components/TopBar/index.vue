@@ -13,12 +13,19 @@
         </li>
       </ul>
     </div>
+    <Toast />
   </div>
 </template>
 <script setup>
+import { useToast } from 'primevue/usetoast';
+import Toast from 'primevue/toast';
+
+const toast = useToast();
+
 const switchTheme = () => {
-  const theme = document.documentElement.getAttribute('data-theme');
-  document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
+  toast.add({ severity: 'contrast', summary: '提示', detail: '功能开发中~', life: 3000 });
+  // const theme = document.documentElement.getAttribute('data-theme');
+  // document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
 };
 </script>
 <style scoped>
