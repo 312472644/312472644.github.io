@@ -9,24 +9,14 @@
           <a href="https://github.com/312472644" target="_blank"><i class="pi pi-github"></i></a>
         </li>
         <li class="link">
-          <i class="pi pi-sun" @click="switchTheme"></i>
+          <SettingTheme />
         </li>
       </ul>
     </div>
-    <Toast />
   </div>
 </template>
 <script setup>
-import { useToast } from 'primevue/usetoast';
-import Toast from 'primevue/toast';
-
-const toast = useToast();
-
-const switchTheme = () => {
-  toast.add({ severity: 'contrast', summary: '提示', detail: '功能开发中~', life: 3000 });
-  // const theme = document.documentElement.getAttribute('data-theme');
-  // document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'light' : 'dark');
-};
+import SettingTheme from '../SettingTheme/index.vue';
 </script>
 <style scoped>
 .layout-topbar {

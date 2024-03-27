@@ -1,4 +1,9 @@
 @import './base.css';
+
+html:root {
+  font-size: 14px;
+}
+
 body,
 html {
   padding: 0;
@@ -23,6 +28,15 @@ li {
   list-style-type: none;
 }
 
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+  margin-top: 0;
+}
+
 .flex {
   display: flex;
 }
@@ -33,4 +47,13 @@ li {
 
 .row-center {
   justify-content: center;
+}
+
+.doc-intro {
+  margin-bottom: 1.5rem;
+}
+.doc-intro p {
+  color: var(--text-color);
+  font-size: 1.125rem;
+  margin: 0;
 }

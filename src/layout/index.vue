@@ -25,7 +25,7 @@ import TopBar from './components/TopBar/index.vue';
 .layout-content {
   margin: 0 auto;
   max-width: var(--content-max-width);
-  display: flex;
   padding: var(--top-bar-height) var(--topbar-spacing) 0;
+  padding-top: calc(var(--top-bar-height) + 20px);
 }
 </style>

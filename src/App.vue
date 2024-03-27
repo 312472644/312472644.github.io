@@ -4,5 +4,6 @@
 <script setup></script>
 
 <style scoped>
-.app-main {}
+.app-main {
+}
 </style>

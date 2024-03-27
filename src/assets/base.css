@@ -1,8 +1,8 @@
-:root {
-  --primary-color: #10b981;
+html:root {
   --bg-color: #f8fafc;
   --top-bar-height: 56px;
   --topbar-spacing: 4rem;
   --content-max-width: 1728px;
   --border-color: #e2e8f0;
+  --text-color: #334155;
 }
