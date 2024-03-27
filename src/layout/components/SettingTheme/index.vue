@@ -18,7 +18,7 @@
         </ul>
       </template>
     </OverlayPanel>
-    <i class="pi pi-palette"></i>
+    <i class="pi pi-palette icon"></i>
     <FullLoading ref="fullLoadingRef" />
   </div>
 </template>
@@ -88,6 +88,8 @@ onMounted(() => {
   bottom: 0;
   left: 0;
   z-index: 0;
+  border-radius: 6px;
+  background-color: var(--primary-color);
 }
 .theme-ul {
   padding: 1rem 0;
@@ -115,5 +117,10 @@ onMounted(() => {
   height: 15px;
   background-color: #3f51b5;
   border-radius: 50%;
+}
+.icon {
+  position: relative;
+  color: #fff;
+  z-index: 999;
 }
 </style>

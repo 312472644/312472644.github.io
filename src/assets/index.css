@@ -57,3 +57,19 @@ h6:first-child {
   font-size: 1.125rem;
   margin: 0;
 }
+
+/* 修改整体轨道的高度 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* 修改滑块的样式 */
+::-webkit-scrollbar-thumb {
+  background-color: #999; /* 根据需要调整颜色 */
+  border-radius: 4px; /* 根据需要调整边角形状 */
+}
+
+/* 当滑块处于活动状态时的样式 */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #666; /* 根据需要调整颜色 */
+}

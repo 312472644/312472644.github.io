@@ -28,7 +28,7 @@ import SettingTheme from '../SettingTheme/index.vue';
   width: 100%;
   height: var(--top-bar-height);
   z-index: 1100;
-  /* backdrop-filter: blur(8px); */
+  backdrop-filter: blur(8px);
 }
 
 .layout-topbar-inner {
