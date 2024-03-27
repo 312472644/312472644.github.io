@@ -99,7 +99,6 @@ const toPage = item => {
 }
 
 .p-card-body {
-  display: initial;
   height: 100%;
 }
 
