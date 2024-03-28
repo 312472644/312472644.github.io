@@ -16,6 +16,8 @@ coverage
 
 .vite
 
+docs
+
 /cypress/videos/
 /cypress/screenshots/
 

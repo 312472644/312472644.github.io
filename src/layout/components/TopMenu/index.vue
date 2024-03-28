@@ -30,9 +30,10 @@ watchEffect(() => {
 <style scoped>
 .top-menu .menu-item {
   font-size: 1rem;
-  width: 80px;
+  width: 60px;
   text-align: center;
   cursor: pointer;
+  transition: color 0.3s;
 }
 
 .top-menu .menu-item.active {

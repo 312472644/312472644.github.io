@@ -5,7 +5,7 @@
         <div class="layout-topbar-logo-container">
           <img class="layout-topbar-logo" src="../../../assets/images/logo.svg" />
         </div>
-        <TopMenu style="margin-left: 2rem" />
+        <TopMenu style="margin-left: 1.5rem" />
       </div>
       <ul class="list flex col-center">
         <li class="link">
