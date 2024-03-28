@@ -59,6 +59,12 @@ const pluginsList = [
     link: 'https://www.npmjs.com/package/g-vue-template-cli',
     tags: ['vue3', 'cli', 'npm', 'Node', 'template'],
   },
+  {
+    name: 'View Node Version',
+    desc: 'View Node Version是一个基于VSCode开发的查看Node.js版本信息以及切换全局Npm代理地址的插件。',
+    link: 'https://marketplace.visualstudio.com/items?itemName=xx312472644.xx-node-version',
+    tags: ['node', 'npm', 'registry', 'vscode', 'plugin'],
+  },
 ];
 
 const getSeverity = name => {

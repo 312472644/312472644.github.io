@@ -1,8 +1,11 @@
 <template>
   <div class="layout-topbar">
     <div class="layout-topbar-inner">
-      <div class="layout-topbar-logo-container">
-        <img class="layout-topbar-logo" src="../../../assets/images/logo.svg" />
+      <div class="flex col-center">
+        <div class="layout-topbar-logo-container">
+          <img class="layout-topbar-logo" src="../../../assets/images/logo.svg" />
+        </div>
+        <TopMenu style="margin-left: 2rem" />
       </div>
       <ul class="list flex col-center">
         <li class="link">
@@ -17,6 +20,7 @@
 </template>
 <script setup>
 import SettingTheme from '../SettingTheme/index.vue';
+import TopMenu from '../TopMenu/index.vue';
 </script>
 <style scoped>
 .layout-topbar {

@@ -61,6 +61,7 @@ h6:first-child {
 /* 修改整体轨道的高度 */
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 
 /* 修改滑块的样式 */
