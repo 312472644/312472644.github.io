@@ -10,9 +10,9 @@
             :class="{ current: item.theme === currentTheme }"
             @click="switchTheme(item)"
           >
-            <span :style="`color:${item.theme === currentTheme ? item.color : ''}`">{{
-              item.name
-            }}</span>
+            <span :style="`color:${item.theme === currentTheme ? item.color : ''}`">
+              {{ item.name }}
+            </span>
             <span class="theme-circle" :style="`background:${item.color}`"></span>
           </li>
         </ul>

@@ -10,7 +10,12 @@
           <template #content>
             <div class="plugin-desc">{{ item.desc }}</div>
             <div class="plugin-tag">
-              <Tag v-for="(tag, index) in item.tags" :key="index" severity="Primary">
+              <Tag
+                style=""
+                v-for="(tag, index) in item.tags"
+                :key="index"
+                :severity="getSeverity(tag)"
+              >
                 {{ tag }}
               </Tag>
             </div>
@@ -46,7 +51,7 @@ const pluginsList = [
     name: 'vite-build-git-info',
     desc: 'vite-build-git-info是一个基于Vite开发的自动获取Git信息并注入到Vite构建环境中的插件。',
     link: 'https://www.npmjs.com/package/vite-build-git-info',
-    tags: ['vite', 'build', 'plugin', 'npm'],
+    tags: ['vite', 'vue3', 'build', 'plugin', 'npm'],
   },
   {
     name: 'g-vue-template-cli',
@@ -55,6 +60,12 @@ const pluginsList = [
     tags: ['vue3', 'cli', 'npm', 'Node', 'template'],
   },
 ];
+
+const getSeverity = name => {
+  if (name.includes('react')) return 'info';
+  if (name.includes('vue')) return 'success';
+  return 'secondary';
+};
 
 const toPage = item => {
   const a = document.createElement('a');
@@ -179,6 +190,24 @@ const toPage = item => {
   }
   75% {
     clip-path: inset(0 0 0 98%);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .plugins {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .plugins {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .plugins {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 </style>
