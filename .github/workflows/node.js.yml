@@ -8,33 +8,71 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  build-and-deploy:
+  # 1) 初始化环境
+  setup:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      # 1 将代码仓库的内容拉取（或称为检出）到工作目录中，以便在下面的工作流程中使用
+      - name: checkout
+        uses: actions/checkout@v3
+
+      # 2 读取缓存 node_modules
+      - name: cache node_modules
+        id: node_modules_cache_id
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          # hashFiles 可以根据文件哈希创建 key 值，当文件依赖发生变化时，重新存储缓存
+          key: ${{ runner.os }}-${{ hashFiles('package.json') }}-node_modules
+
+  # 2) 构建项目
+  build:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      # 1 安装 node 环境
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18.x
           cache: 'npm'
 
-      - name: Install Dependencies
+      # 2 读取缓存 node_modules
+      - name: restore node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('package.json') }}-node_modules
+          restore-keys: |
+            ${{ runner.os }}-${{ hashFiles('package.json') }}-node_modules
+
+      # 3 安装检索依赖
+      - name: Install Dependencies(安装依赖)
         run: npm install
 
-      - name: Build
+      # 4 构建项目
+      - name: Build(构建项目)
         run: npm run build
 
-      - name: Deploy
+      - name: Upload build artifacts (上传构建产物)
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: './dist'
+
+  # 3) 部署项目
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
+          force_orphan: true
