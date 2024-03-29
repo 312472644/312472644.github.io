@@ -21,6 +21,8 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: checkout
+        uses: actions/checkout@v3
       - name: 设置Node.js版本
         uses: actions/setup-node@v3
         with:
