@@ -9,32 +9,30 @@ on:
       - main
 
 jobs:
-  # 2) 构建项目
-  build:
-    permissions:
-      contents: read
+  build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
     steps:
       - uses: actions/checkout@v3
-      # 1 安装 node 环境
-      - name: Setup Node.js (设置 node 版本)
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: 18
-      - name: Install pnpm (安装 pnpm)
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      # 2 安装检索依赖
-      - name: Install Dependencies(安装依赖)
-        run: pnpm i
-      # 3 构建项目
-      - name: Build(构建项目)
-        run: pnpm run build
-        
-      - name: Deploy to GitHub Pages
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          force_orphan: true
