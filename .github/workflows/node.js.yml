@@ -8,12 +8,11 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-
 jobs:
   # 2) 构建项目
   build:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
