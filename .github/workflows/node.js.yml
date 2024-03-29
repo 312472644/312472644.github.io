@@ -36,7 +36,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
           cache-dependency-path: subdir/package-lock.json
 
       # 2 安装检索依赖
