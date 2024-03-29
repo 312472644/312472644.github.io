@@ -31,14 +31,13 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-        
+
     steps:
       # 1 安装 node 环境
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
 
       # 2 安装检索依赖
       - name: Install Dependencies(安装依赖)
