@@ -10,8 +10,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 jobs:
   # 1) 初始化环境
@@ -38,6 +36,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: subdir/package-lock.json
 
       # 2 安装检索依赖
       - name: Install Dependencies(安装依赖)
