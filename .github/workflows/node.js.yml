@@ -44,13 +44,13 @@ jobs:
           cache: 'npm'
 
       # 2 读取缓存 node_modules
-      - name: restore node_modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ hashFiles('package.json') }}-node_modules
-          restore-keys: |
-            ${{ runner.os }}-${{ hashFiles('package.json') }}-node_modules
+      #- name: restore node_modules
+      #  uses: actions/cache@v3
+      #  with:
+      #    path: node_modules
+      #    key: ${{ runner.os }}-${{ hashFiles('package.json') }}-node_modules
+      #    restore-keys: |
+      #      ${{ runner.os }}-${{ hashFiles('package.json') }}-node_modules
 
       # 3 安装检索依赖
       - name: Install Dependencies(安装依赖)
