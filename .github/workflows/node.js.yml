@@ -23,17 +23,23 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+        
       - name: 设置Node.js版本
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
 
+      - name: Install pnpm (安装 pnpm)
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Install Dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Build
-        run: npm run build
+        run: pnpm run build
 
   deploy:
     runs-on: ubuntu-latest
