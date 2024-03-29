@@ -24,26 +24,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: setup
-    strategy:
-      matrix:
-        node-version: [18.x]
 
     steps:
       # 1 安装 node 环境
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js (设置 node 版本)
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-
+          node-version: 18
       - name: Install pnpm (安装 pnpm)
         uses: pnpm/action-setup@v2
         with:
           version: 7.0.0
-
       # 2 安装检索依赖
       - name: Install Dependencies(安装依赖)
         run: pnpm install
-
       # 3 构建项目
       - name: Build(构建项目)
         run: pnpm run build
