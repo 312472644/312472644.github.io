@@ -34,10 +34,10 @@ jobs:
       - name: Install pnpm (安装 pnpm)
         uses: pnpm/action-setup@v2
         with:
-          version: 7.0.0
+          version: 8
       # 2 安装检索依赖
       - name: Install Dependencies(安装依赖)
-        run: pnpm install
+        run: pnpm i
       # 3 构建项目
       - name: Build(构建项目)
         run: pnpm run build
