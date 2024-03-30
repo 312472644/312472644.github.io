@@ -20,23 +20,42 @@ const items = ref([
   {
     label: '联系作者',
     icon: 'pi pi-whatsapp',
-    command: () => {
-      navigator.clipboard
-        .writeText('网易邮箱：xx312472644@163.com\nqq邮箱：312472644@qq.com ')
-        .then(() => {
-          toast.add({
-            severity: 'success',
-            summary: '复制成功',
-            life: 3000,
-            detail: '作者邮箱已复制到剪贴板',
-          });
-        });
-    },
+    command: () => copyText(),
   },
 ]);
+
+const copySuccess = () => {
+  toast.add({
+    severity: 'success',
+    summary: '复制成功',
+    life: 3000,
+    detail: '作者邮箱已复制到剪贴板',
+  });
+};
+
+const copyText = text => {
+  const concatText = `网易邮箱：xx312472644@163.com\nqq邮箱：312472644@qq.com`;
+  if (window.navigator.clipboard) {
+    navigator.clipboard.writeText(concatText).then(() => {
+      copySuccess();
+    });
+  } else {
+    const inputDom = document.createElement(concatText);
+    inputDom.setAttribute('readonly', 'readonly');
+    inputDom.value = text;
+    document.body.appendChild(inputDom);
+    inputDom.select();
+    const result = document.execCommand('copy');
+    if (result) {
+      copySuccess();
+    }
+    document.body.removeChild(inputDom);
+  }
+};
 </script>
 <style scoped>
 >>> .right-bottom {
+  position: fixed !important;
   right: 20px !important;
   bottom: 50px !important;
 }

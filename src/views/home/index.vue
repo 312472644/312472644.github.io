@@ -86,6 +86,10 @@ const toPage = item => {
 };
 </script>
 <style>
+.home {
+  padding-bottom: 30px;
+}
+
 .plugins {
   display: grid;
   grid-gap: 1rem;

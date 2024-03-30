@@ -9,6 +9,7 @@ export function getMenuList(routerList = []) {
   routerList.forEach(item => {
     if (!item.hidden) {
       list.push({
+        icon: item.meta?.icon,
         title: item.meta?.title,
         path: item.path,
       });
