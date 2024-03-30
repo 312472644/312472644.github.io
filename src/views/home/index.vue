@@ -62,7 +62,8 @@ const pluginsList = [
   {
     name: 'View Node Version',
     desc: 'View Node Version是一个基于VSCode开发的查看Node.js版本信息以及切换全局Npm代理地址的插件。',
-    link: 'https://marketplace.visualstudio.com/items?itemName=xx312472644.xx-node-version',
+    type: 'vscode',
+    link: 'vscode:extension/xx312472644.xx-node-version',
     tags: ['node', 'npm', 'registry', 'vscode', 'plugin'],
   },
 ];
@@ -76,7 +77,9 @@ const getSeverity = name => {
 const toPage = item => {
   const a = document.createElement('a');
   a.href = item.link;
-  a.target = '_blank';
+  if (item.type !== 'vscode') {
+    a.target = '_blank';
+  }
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
