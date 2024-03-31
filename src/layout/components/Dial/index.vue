@@ -47,7 +47,7 @@ const commandCopy = text => {
 };
 
 const copyText = () => {
-  const concatText = `网易邮箱：xx312472644@163.com\nqq邮箱：312472644@qq.com`;
+  const concatText = `网易邮箱：xx312472644@163.com\r\nqq邮箱：312472644@qq.com`;
   if (window.navigator.clipboard) {
     navigator.clipboard
       .writeText(concatText)
