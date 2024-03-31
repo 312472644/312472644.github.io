@@ -1,0 +1,1 @@
+import{_ as e,o as c,c as o}from"./index-CbcsrSmd.js";const t={},n={class:"page-not-found"};function s(_,a){return c(),o("div",n,"404")}const d=e(t,[["render",s],["__scopeId","data-v-79226128"]]);export{d as default};
