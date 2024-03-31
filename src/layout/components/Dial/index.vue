@@ -36,9 +36,19 @@ const copySuccess = () => {
 const copyText = text => {
   const concatText = `网易邮箱：xx312472644@163.com\nqq邮箱：312472644@qq.com`;
   if (window.navigator.clipboard) {
-    navigator.clipboard.writeText(concatText).then(() => {
-      copySuccess();
-    });
+    navigator.clipboard
+      .writeText(concatText)
+      .then(() => {
+        copySuccess();
+      })
+      .catch(() => {
+        toast.add({
+          severity: 'error',
+          summary: '复制失败',
+          life: 3000,
+          detail: '请手动复制作者邮箱',
+        });
+      });
   } else {
     const inputDom = document.createElement(concatText);
     inputDom.setAttribute('readonly', 'readonly');
@@ -54,13 +64,13 @@ const copyText = text => {
 };
 </script>
 <style scoped>
->>> .right-bottom {
+:deep() .right-bottom {
   position: fixed !important;
   right: 20px !important;
   bottom: 50px !important;
 }
 
->>> .p-speeddial-action {
+:deep() .p-speeddial-action {
   background: #fff;
   border: 1px solid #e2e8f0;
 }

@@ -6,6 +6,7 @@ import Home from '@/views/home/index.vue';
 const routes = [
   {
     path: '/',
+    sort: 1,
     meta: { title: '主页', icon: 'pi-home' },
     component: Layout,
     children: [
@@ -18,6 +19,7 @@ const routes = [
   },
   {
     path: '/about',
+    sort: 4,
     meta: { title: '关于', icon: 'pi-info-circle' },
     component: Layout,
     children: [
@@ -30,6 +32,7 @@ const routes = [
   },
   {
     path: '/note',
+    sort: 2,
     meta: { title: '笔记', icon: 'pi-book' },
     component: Layout,
     children: [
@@ -42,6 +45,7 @@ const routes = [
   },
   {
     path: '/resource',
+    sort: 3,
     meta: { title: '资源', icon: 'pi-box' },
     component: Layout,
     children: [

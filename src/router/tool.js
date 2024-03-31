@@ -6,6 +6,7 @@
 export function getMenuList(routerList = []) {
   const list = [];
 
+  routerList.sort((a, b) => a.sort - b.sort);
   routerList.forEach(item => {
     if (!item.hidden) {
       list.push({
