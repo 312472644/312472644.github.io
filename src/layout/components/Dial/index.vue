@@ -33,7 +33,20 @@ const copySuccess = () => {
   });
 };
 
-const copyText = text => {
+const commandCopy = text => {
+  const inputDom = document.createElement('input');
+  inputDom.setAttribute('readonly', 'readonly');
+  inputDom.value = text;
+  document.body.appendChild(inputDom);
+  inputDom.select();
+  const result = document.execCommand('copy');
+  if (result) {
+    copySuccess();
+  }
+  document.body.removeChild(inputDom);
+};
+
+const copyText = () => {
   const concatText = `网易邮箱：xx312472644@163.com\nqq邮箱：312472644@qq.com`;
   if (window.navigator.clipboard) {
     navigator.clipboard
@@ -42,24 +55,10 @@ const copyText = text => {
         copySuccess();
       })
       .catch(() => {
-        toast.add({
-          severity: 'error',
-          summary: '复制失败',
-          life: 3000,
-          detail: '请手动复制作者邮箱',
-        });
+        commandCopy(concatText);
       });
   } else {
-    const inputDom = document.createElement(concatText);
-    inputDom.setAttribute('readonly', 'readonly');
-    inputDom.value = text;
-    document.body.appendChild(inputDom);
-    inputDom.select();
-    const result = document.execCommand('copy');
-    if (result) {
-      copySuccess();
-    }
-    document.body.removeChild(inputDom);
+    commandCopy(concatText);
   }
 };
 </script>
