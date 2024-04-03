@@ -100,10 +100,6 @@ const toPage = item => {
   min-height: 150px;
 }
 
-.doc-intro {
-  margin-bottom: 1.5rem;
-}
-
 .p-card {
   height: 100%;
   cursor: pointer;
@@ -203,24 +199,6 @@ const toPage = item => {
   }
   75% {
     clip-path: inset(0 0 0 98%);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .plugins {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 992px) {
-  .plugins {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (min-width: 992px) and (max-width: 1200px) {
-  .plugins {
-    grid-template-columns: repeat(3, 1fr);
   }
 }
 </style>

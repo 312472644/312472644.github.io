@@ -7,7 +7,7 @@
         </div>
         <TopMenu style="margin-left: 1.5rem" />
       </div>
-      <ul class="list flex col-center">
+      <ul class="operation-icon flex col-center">
         <li class="link">
           <a href="https://github.com/312472644" target="_blank"><i class="pi pi-github"></i></a>
         </li>
@@ -48,9 +48,6 @@ import TopMenu from '../TopMenu/index.vue';
   width: 50px;
   height: 50px;
   cursor: pointer;
-}
-.list {
-  display: flex;
 }
 .link {
   border: 1px solid var(--border-color);
