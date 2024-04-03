@@ -85,36 +85,30 @@ defineExpose({ toggle });
 
 @keyframes rotate1 {
   0% {
-    -webkit-transform: rotateX(35deg) rotateY(-45deg) rotate(0);
     transform: rotateX(35deg) rotateY(-45deg) rotate(0);
   }
 
   to {
-    -webkit-transform: rotateX(35deg) rotateY(-45deg) rotate(1turn);
     transform: rotateX(35deg) rotateY(-45deg) rotate(1turn);
   }
 }
 
 @keyframes rotate2 {
   0% {
-    -webkit-transform: rotateX(50deg) rotateY(10deg) rotate(0);
     transform: rotateX(50deg) rotateY(10deg) rotate(0);
   }
 
   to {
-    -webkit-transform: rotateX(50deg) rotateY(10deg) rotate(1turn);
     transform: rotateX(50deg) rotateY(10deg) rotate(1turn);
   }
 }
 
 @keyframes rotate3 {
   0% {
-    -webkit-transform: rotateX(35deg) rotateY(55deg) rotate(0);
     transform: rotateX(35deg) rotateY(55deg) rotate(0);
   }
 
   to {
-    -webkit-transform: rotateX(35deg) rotateY(55deg) rotate(1turn);
     transform: rotateX(35deg) rotateY(55deg) rotate(1turn);
   }
 }

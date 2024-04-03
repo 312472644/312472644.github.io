@@ -16,3 +16,17 @@ export function initTheme() {
   link.id = 'theme-link';
   document.head.appendChild(link);
 }
+
+/**
+ * a标签页面跳转
+ * @param {String} href
+ */
+export function toPage(href) {
+  if (!href) return;
+  const a = document.createElement('a');
+  a.href = href;
+  a.target = '_blank';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}

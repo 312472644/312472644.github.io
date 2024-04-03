@@ -4,7 +4,12 @@
       <h1>插件</h1>
     </div>
     <div class="plugins">
-      <div v-for="item in pluginsList" :key="item.name" class="plugin-item" @click="toPage(item)">
+      <div
+        v-for="item in pluginsList"
+        :key="item.name"
+        class="plugin-item"
+        @click="toPage(item.link)"
+      >
         <Card class="landing">
           <template #title>{{ item.name }}</template>
           <template #content>
@@ -26,6 +31,7 @@
   </div>
 </template>
 <script setup>
+import { toPage } from '@/utils';
 import Card from 'primevue/card';
 
 const pluginsList = [
@@ -72,17 +78,6 @@ const getSeverity = name => {
   if (name.includes('react')) return 'info';
   if (name.includes('vue')) return 'success';
   return 'secondary';
-};
-
-const toPage = item => {
-  const a = document.createElement('a');
-  a.href = item.link;
-  if (item.type !== 'vscode') {
-    a.target = '_blank';
-  }
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
 };
 </script>
 <style>
@@ -142,63 +137,5 @@ const toPage = item => {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 1rem;
-}
-
-.landing {
-  position: relative;
-  z-index: 0;
-}
-
-.landing:hover::before,
-.landing:hover::after {
-  opacity: 1;
-  z-index: 9;
-}
-
-.landing::before {
-  animation: clippath 3s linear infinite;
-  border: 1px solid var(--primary-color);
-  border-radius: 10px;
-  bottom: -2px;
-  content: '';
-  left: -2px;
-  opacity: 0;
-  position: absolute;
-  right: -2px;
-  top: -2px;
-  transition: all 0.3s;
-  z-index: -1;
-}
-
-.landing::after {
-  animation: clippath 3s linear -1.5s infinite;
-  border: 1px solid var(--primary-color);
-  border-radius: 10px;
-  bottom: -2px;
-  content: '';
-  left: -2px;
-  opacity: 0;
-  position: absolute;
-  right: -2px;
-  top: -2px;
-  transition: all 0.3s;
-  z-index: -1;
-}
-
-@keyframes clippath {
-  0%,
-  100% {
-    clip-path: inset(0 0 98% 0);
-  }
-  25% {
-    clip-path: inset(0 98% 0 0);
-  }
-
-  50% {
-    clip-path: inset(98% 0 0 0);
-  }
-  75% {
-    clip-path: inset(0 0 0 98%);
-  }
 }
 </style>

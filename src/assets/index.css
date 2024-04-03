@@ -59,6 +59,51 @@ h6:first-child {
   margin: 0;
 }
 
+.landing {
+  position: relative;
+  z-index: 0;
+}
+
+.landing:hover::before,
+.landing:hover::after {
+  opacity: 1;
+  z-index: 9;
+}
+
+.landing::before {
+  animation: clippath 3s linear infinite;
+  border: 1px solid var(--primary-color);
+  border-radius: 10px;
+  bottom: -2px;
+  content: '';
+  left: -2px;
+  opacity: 0;
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  transition: all 0.3s;
+  z-index: -1;
+}
+
+.landing::after {
+  animation: clippath 3s linear -1.5s infinite;
+  border: 1px solid var(--primary-color);
+  border-radius: 10px;
+  bottom: -2px;
+  content: '';
+  left: -2px;
+  opacity: 0;
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  transition: all 0.3s;
+  z-index: -1;
+}
+
+.p-card-body {
+  gap: 0;
+}
+
 /* 修改整体轨道的高度 */
 ::-webkit-scrollbar {
   width: 6px;
@@ -76,6 +121,24 @@ h6:first-child {
   background-color: #666; /* 根据需要调整颜色 */
 }
 
+@keyframes clippath {
+  0%,
+  100% {
+    clip-path: inset(0 0 98% 0);
+  }
+  25% {
+    clip-path: inset(0 98% 0 0);
+  }
+
+  50% {
+    clip-path: inset(98% 0 0 0);
+  }
+  75% {
+    clip-path: inset(0 0 0 98%);
+  }
+}
+
+/* 超小屏 */
 @media screen and (max-width: 768px) {
   .home .plugins {
     grid-template-columns: repeat(1, 1fr);
@@ -83,16 +146,34 @@ h6:first-child {
   .operation-icon {
     display: none;
   }
+  .resource div.resource-body {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
+/*小屏*/
 @media screen and (min-width: 768px) and (max-width: 992px) {
   .home .plugins {
     grid-template-columns: repeat(2, 1fr);
   }
+  .resource div.resource-body {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
+/*中屏*/
 @media screen and (min-width: 992px) and (max-width: 1200px) {
   .home .plugins {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .resource div.resource-body {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/**大屏 */
+@media screen and (min-width: 1200px) and (max-width: 1440px) {
+  .resource div.resource-body {
+    grid-template-columns: repeat(4, 1fr) !important;
   }
 }
