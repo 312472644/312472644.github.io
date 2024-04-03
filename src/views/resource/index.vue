@@ -25,10 +25,6 @@
 import { toPage } from '@/utils';
 import ListItem from './ListItem.vue';
 
-const getFilePath = path => {
-  return new URL(path, import.meta.url).href;
-};
-
 const channelList = ref([
   {
     label: 'UI组件',
@@ -41,43 +37,43 @@ const channelList = ref([
           {
             label: 'DataV',
             desc: '主要用于构建大屏（全屏）数据展示页面即数据可视化。',
-            logo: getFilePath('./images/DataV.ico'),
+            logo: new URL('../../assets/images/resource/DataV.ico', import.meta.url),
             link: 'http://datav.jiaminghi.com/guide/#%E7%94%A8%E5%89%8D%E5%BF%85%E7%9C%8B',
           },
           {
             label: 'BizCharts4',
             desc: '是基于 G2 4.X 封装的 React 图表库，具有 G2、React 的全部优点，可以让用户以组件的形式组合出无数种图表。',
-            logo: getFilePath('./images/BizCharts.png'),
+            logo: new URL('../../assets/images/resource/BizCharts.png', import.meta.url),
             link: 'https://bizcharts.taobao.com/product/BizCharts4/gallery',
           },
           {
             label: 'Canvas Editor',
             desc: '所见即所得的富文本编辑器。',
-            logo: getFilePath('./images/CanvasEditor.png'),
+            logo: new URL('../../assets/images/resource/CanvasEditor.png', import.meta.url),
             link: 'https://hufe.club/canvas-editor-docs/guide/start.html',
           },
           {
             label: 'ECharts',
             desc: '一个基于 JavaScript 的开源可视化图表库。',
-            logo: getFilePath('./images/ECharts.png'),
+            logo: new URL('../../assets/images/resource/ECharts.png', import.meta.url),
             link: 'https://echarts.apache.org/zh/option.html#title',
           },
           {
             label: 'AntV',
             desc: '蚂蚁企业级数据可视化解决方案，让人们在数据世界里获得视觉化思考能力。',
-            logo: getFilePath('./images/AntV.png'),
+            logo: new URL('../../assets/images/resource/AntV.png', import.meta.url),
             link: 'https://antv.antgroup.com/',
           },
           {
             label: 'VChart',
             desc: '开箱即用的多端图表库,生动灵活的数据故事讲述者。',
-            logo: getFilePath('./images/VChart.png'),
+            logo: new URL('../../assets/images/resource/VChart.png', import.meta.url),
             link: 'https://www.visactor.io/vchart/example',
           },
           {
             label: 'ChartJs',
             desc: '用于现代网络的简单而灵活的 JavaScript 图表库。',
-            logo: getFilePath('./images/AntV.png'),
+            logo: new URL('../../assets/images/resource/AntV.png', import.meta.url),
             link: 'https://chart.nodejs.cn/docs/latest/',
           },
         ],
