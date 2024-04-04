@@ -58,7 +58,7 @@
       :style="{ width: '400px' }"
     >
       <div style="display: flex; justify-content: center; align-items: center">
-        <Image :src="WxBarCode" alt="Image" width="250" />
+        <Image style="text-align: center" :src="WxBarCode" alt="Image" width="80%" />
       </div>
     </Dialog>
   </div>
