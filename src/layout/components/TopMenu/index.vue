@@ -40,8 +40,6 @@ const router = useRouter();
 const currentPath = ref('/');
 const visible = ref(false);
 
-console.log('menuList', menuList);
-
 const jump = item => {
   router.push(item.path);
   visible.value = false;

@@ -2,11 +2,16 @@
   <div class="resource">
     <ListItem v-model="parentChannel" :list="channelList"></ListItem>
     <ListItem v-model="childChannel" :list="childList"></ListItem>
-    <div class="resource-body">
-      <div class="item landing" v-for="(item, index) in dataList" :key="index">
+    <div v-if="dataList.length" class="resource-body">
+      <div
+        class="item landing"
+        v-for="(item, index) in dataList"
+        :key="index"
+        @click="() => toPage(item.link)"
+      >
         <Card>
           <template #title>
-            <div class="name" @click="() => toPage(item.link)">
+            <div class="name">
               <span><img style="width: 30px; height: 30px" :src="item.logo" /></span>
               <span class="label">{{ item.label }}</span>
             </div>
@@ -19,100 +24,38 @@
         </Card>
       </div>
     </div>
+    <Empty v-if="!dataList.length" style="margin-top: 10px" />
   </div>
 </template>
 <script setup>
-import { toPage } from '@/utils';
+import Empty from '@/components/Empty/index.vue';
 import ListItem from './ListItem.vue';
 
-const channelList = ref([
-  {
-    label: 'UI组件',
-    value: 'UIComponents',
-    children: [
-      {
-        label: '图表',
-        value: 'Chart',
-        children: [
-          {
-            label: 'DataV',
-            desc: '主要用于构建大屏（全屏）数据展示页面即数据可视化。',
-            logo: new URL('../../assets/images/resource/DataV.ico', import.meta.url),
-            link: 'http://datav.jiaminghi.com/guide/#%E7%94%A8%E5%89%8D%E5%BF%85%E7%9C%8B',
-          },
-          {
-            label: 'BizCharts4',
-            desc: '是基于 G2 4.X 封装的 React 图表库，具有 G2、React 的全部优点，可以让用户以组件的形式组合出无数种图表。',
-            logo: new URL('../../assets/images/resource/BizCharts.png', import.meta.url),
-            link: 'https://bizcharts.taobao.com/product/BizCharts4/gallery',
-          },
-          {
-            label: 'Canvas Editor',
-            desc: '所见即所得的富文本编辑器。',
-            logo: new URL('../../assets/images/resource/CanvasEditor.png', import.meta.url),
-            link: 'https://hufe.club/canvas-editor-docs/guide/start.html',
-          },
-          {
-            label: 'ECharts',
-            desc: '一个基于 JavaScript 的开源可视化图表库。',
-            logo: new URL('../../assets/images/resource/ECharts.png', import.meta.url),
-            link: 'https://echarts.apache.org/zh/option.html#title',
-          },
-          {
-            label: 'AntV',
-            desc: '蚂蚁企业级数据可视化解决方案，让人们在数据世界里获得视觉化思考能力。',
-            logo: new URL('../../assets/images/resource/AntV.png', import.meta.url),
-            link: 'https://antv.antgroup.com/',
-          },
-          {
-            label: 'VChart',
-            desc: '开箱即用的多端图表库,生动灵活的数据故事讲述者。',
-            logo: new URL('../../assets/images/resource/VChart.png', import.meta.url),
-            link: 'https://www.visactor.io/vchart/example',
-          },
-          {
-            label: 'ChartJs',
-            desc: '用于现代网络的简单而灵活的 JavaScript 图表库。',
-            logo: new URL('../../assets/images/resource/AntV.png', import.meta.url),
-            link: 'https://chart.nodejs.cn/docs/latest/',
-          },
-        ],
-      },
-      { label: '框架UI', value: 'FrameworkUI' },
-      { label: '图标', value: 'Icon' },
-      { label: '其他', value: 'Other' },
-      { label: '管理系统模板', value: 'ManageFramework' },
-      { label: 'CSS', value: 'Css' },
-    ],
-  },
-  { label: 'Vue', value: 'Vue' },
-  { label: '代码管理', value: 'Code' },
-  { label: '工程化', value: 'Engineering' },
-  { label: 'JS框架', value: 'JSFramework' },
-  { label: 'Mock', value: 'Mock' },
-  { label: '邮箱', value: 'Mail' },
-  { label: '壁纸', value: 'Picture' },
-  { label: '移动端', value: 'Mobile' },
-  { label: 'Node', value: 'Node' },
-  { label: '插件', value: 'Plugins' },
-  { label: '其他', value: 'Other' },
-]);
+import { toPage } from '@/utils';
+import { channelList } from './data';
 
-const parentChannel = ref(channelList.value?.[0]?.value);
+const parentChannel = ref(channelList[0].value);
 const childChannel = ref(null);
 const childList = ref([]);
 const dataList = ref([]);
 
 const handleParentChange = value => {
-  const list = channelList.value.find(item => item.value === value)?.children || [];
-  childList.value = list;
-  childChannel.value = list?.[0]?.value;
+  const item = channelList.find(item => item.value === value) || {};
+  if (item.hasChildren) {
+    childList.value = item.children;
+    childChannel.value = item.children?.[0]?.value;
+    dataList.value = [];
+  } else {
+    childList.value = [];
+    childChannel.value = null;
+    dataList.value = item.children || [];
+  }
 };
 
 const handleChildChange = value => {
+  if (!value) return;
   childChannel.value = value;
   dataList.value = childList.value.find(item => item.value === value)?.children || [];
-  console.log('childChannel', dataList.value);
 };
 
 watch(() => parentChannel.value, handleParentChange, { immediate: true });

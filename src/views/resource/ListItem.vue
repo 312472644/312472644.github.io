@@ -34,6 +34,13 @@ const props = defineProps({
   },
 });
 
+watch(
+  () => props.modelValue,
+  () => {
+    activeChannel.value = props.modelValue;
+  }
+);
+
 const height = ref(props.itemHeight);
 const channelRef = ref(null);
 const activeChannel = ref(props.modelValue);
