@@ -83,16 +83,28 @@ const pluginsList = [
     tags: ['chrome', 'chrome-plugins', 'cli', 'npm', 'Node'],
   },
   {
-    name: 'webpack-plugin-dist-zip',
-    desc: 'webpack-plugin-dist-zip是一个基于Webpack开发的打包后自动压缩成zip包的插件。',
+    name: '@develop-plugins/vite-generate-zip',
+    desc: '@develop-plugins/vite-generate-zip是一个基于vite开发的打包后自动压缩成zip包的插件。',
+    link: 'https://www.npmjs.com/package/@develop-plugins/vite-generate-zip',
+    tags: ['vite', 'build', 'plugin', 'npm'],
+  },
+  {
+    name: '@develop-plugins/webpack-generate-zip',
+    desc: '@develop-plugins/webpack-generate-zip是一个基于Webpack开发的打包后自动压缩成zip包的插件。',
     link: 'https://www.npmjs.com/package/webpack-plugin-dist-zip',
     tags: ['webpack', 'build', 'plugin', 'npm'],
   },
   {
-    name: 'vite-build-git-info',
-    desc: 'vite-build-git-info是一个基于Vite开发的自动获取Git信息并注入到Vite构建环境中的插件。',
-    link: 'https://www.npmjs.com/package/vite-build-git-info',
+    name: '@develop-plugins/vite-build-git-info',
+    desc: '@develop-plugins/vite-build-git-info是一个基于Vite开发的自动获取Git信息并注入到Vite构建环境中的插件。',
+    link: 'https://www.npmjs.com/package/@develop-plugins/vite-build-git-info',
     tags: ['vite', 'vue3', 'build', 'plugin', 'npm'],
+  },
+  {
+    name: '@develop-plugins/org-chart',
+    desc: '@develop-plugins/org-chart组织图可视化分层组织数据的插件。',
+    link: 'https://www.npmjs.com/package/@develop-plugins/org-chart',
+    tags: ['node', 'npm', 'vscode', 'plugin'],
   },
   {
     name: 'g-vue-template-cli',
