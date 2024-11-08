@@ -58,13 +58,15 @@
       :style="{ width: '400px' }"
     >
       <div style="display: flex; justify-content: center; align-items: center">
-        <Image style="text-align: center" :src="WxBarCode" alt="Image" width="80%" />
+        <Image style="text-align: center" :src="WxBarCode" alt="Image" width="80%"/>
       </div>
     </Dialog>
   </div>
 </template>
 <script setup>
 import { toPage } from '@/utils';
+import { channelList } from "@/views/resource/data.js";
+import ListItem from "@/views/resource/ListItem.vue";
 import Card from 'primevue/card';
 import WxBarCode from '@/assets/images/wx_bar_cod.jpg';
 
@@ -72,49 +74,67 @@ const visible = ref(false);
 const pluginsList = [
   {
     name: 'sugar-video-player',
-    desc: 'sugar-video-player是一个基于React开发的视频播放器插件，支持自定义UI、自定义控制条、自定义事件等。',
+    desc: 'sugar-video-player是一个基于React 开发的视频播放器插件，支持自定义UI、自定义控制条、自定义事件等。',
     link: 'https://www.npmjs.com/package/sugar-video-player',
     tags: ['react', 'video', 'plugin', 'npm', 'ts'],
   },
   {
     name: 'chrome-plugins-cli',
-    desc: 'chrome-plugins-cli是一个基于Node.js开发的Chrome插件开发脚手架，支持一键生成Chrome插件项目。',
+    desc: 'chrome-plugins-cli是一个基于Node.js 开发的Chrome插件开发脚手架，支持一键生成Chrome插件项目。',
     link: 'https://www.npmjs.com/package/chrome-plugins-cli',
     tags: ['chrome', 'chrome-plugins', 'cli', 'npm', 'Node'],
   },
   {
     name: '@develop-plugins/vite-generate-zip',
-    desc: '@develop-plugins/vite-generate-zip是一个基于vite开发的打包后自动压缩成zip包的插件。',
+    desc: '@develop-plugins/vite-generate-zip 是一个基于vite开发的打包后自动压缩成zip包的插件。',
     link: 'https://www.npmjs.com/package/@develop-plugins/vite-generate-zip',
     tags: ['vite', 'build', 'plugin', 'npm'],
   },
   {
     name: '@develop-plugins/webpack-generate-zip',
-    desc: '@develop-plugins/webpack-generate-zip是一个基于Webpack开发的打包后自动压缩成zip包的插件。',
+    desc: '@develop-plugins/webpack-generate-zip 是一个基于Webpack开发的打包后自动压缩成zip包的插件。',
     link: 'https://www.npmjs.com/package/webpack-plugin-dist-zip',
     tags: ['webpack', 'build', 'plugin', 'npm'],
   },
   {
     name: '@develop-plugins/vite-build-git-info',
-    desc: '@develop-plugins/vite-build-git-info是一个基于Vite开发的自动获取Git信息并注入到Vite构建环境中的插件。',
+    desc: '@develop-plugins/vite-build-git-info 是一个基于Vite开发的自动获取Git信息并注入到Vite构建环境中的插件。',
     link: 'https://www.npmjs.com/package/@develop-plugins/vite-build-git-info',
     tags: ['vite', 'vue3', 'build', 'plugin', 'npm'],
   },
   {
     name: '@develop-plugins/org-chart',
-    desc: '@develop-plugins/org-chart组织图可视化分层组织数据的插件。',
+    desc: '@develop-plugins/org-chart 组织图可视化分层组织数据的插件。',
+    link: 'hhttps://www.npmjs.com/package/@develop-plugins/water-mark',
+    tags: ['vue3', 'npm', 'plugin', 'org'],
+  },
+  {
+    name: '@develop-plugins/water-mark',
+    desc: '@develop-plugins/water-mark 给页面的某个区域加上水印。',
     link: 'https://www.npmjs.com/package/@develop-plugins/org-chart',
-    tags: ['node', 'npm', 'vscode', 'plugin'],
+    tags: ['vue3', 'npm', 'plugin', 'water mark'],
+  },
+  {
+    name: '@develop-plugins/directive',
+    desc: '@develop-plugins/directive vue3工具指令。',
+    link: 'https://www.npmjs.com/package/@develop-plugins/directive',
+    tags: ['vue3', 'npm', 'plugin', 'org'],
+  },
+  {
+    name: '@develop-plugins/text-ellipsis',
+    desc: '@develop-plugins/text-ellipsis vue3文本截取插件。',
+    link: 'https://www.npmjs.com/package/@develop-plugins/text-ellipsis',
+    tags: ['vue3', 'npm', 'plugin', 'text-ellipsis'],
   },
   {
     name: 'g-vue-template-cli',
-    desc: 'g-vue-template-cli是一个基于Vue3开发的Vue3项目模板脚手架，支持一键生成Vue3项目模板。',
+    desc: 'g-vue-template-cli 是一个基于Vue3开发的Vue3项目模板脚手架，支持一键生成Vue3项目模板。',
     link: 'https://www.npmjs.com/package/g-vue-template-cli',
     tags: ['vue3', 'cli', 'npm', 'Node', 'template'],
   },
   {
     name: 'View Node Version',
-    desc: 'View Node Version是一个基于VSCode开发的查看Node.js版本信息以及切换全局Npm代理地址的插件。',
+    desc: 'View Node Version是一个 基于VSCode开发的查看Node.js版本信息以及切换全局Npm代理地址的插件。',
     type: 'vscode',
     link: 'vscode:extension/xx312472644.xx-node-version',
     tags: ['node', 'npm', 'registry', 'vscode', 'plugin'],
@@ -122,11 +142,11 @@ const pluginsList = [
 ];
 
 const worksList = [
-  {
-    name: '刀塔数据 Web',
-    desc: '刀塔数据是一个基于Vue3开发的刀塔据查询网站，支持查询英雄、装备、阵容、队伍、实时赛事等数据。',
-    link: 'http://124.70.218.140/#/dota-data',
-  },
+  // {
+  //   name: '刀塔数据 Web',
+  //   desc: '刀塔数据是一个基于Vue3开发的刀塔据查询网站，支持查询英雄、装备、阵容、队伍、实时赛事等数据。',
+  //   link: 'http://124.70.218.140/#/dota-data',
+  // },
   {
     name: '刀塔辅助助手小程序',
     desc: '刀塔辅助助手是一个基于微信原生开发的刀塔据查询小程序，支持查询英雄、装备、阵容、队伍、实时赛事等数据。',
@@ -136,6 +156,7 @@ const worksList = [
 const getSeverity = name => {
   if (name.includes('react')) return 'info';
   if (name.includes('vue')) return 'success';
+  if (name.includes('vscode')) return 'warning';
   return 'secondary';
 };
 
