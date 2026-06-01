@@ -13,6 +13,7 @@
 <script setup>
 import Toast from 'primevue/toast';
 import { useToast } from 'primevue/usetoast';
+import { toPage } from '@/utils';
 
 const toast = useToast();
 
@@ -21,6 +22,11 @@ const items = ref([
     label: '联系作者',
     icon: 'pi pi-whatsapp',
     command: () => copyText(),
+  },
+  {
+    label: '详细文档',
+    icon: 'pi pi-book',
+    command: () => toPage('https://312472644.github.io/develop-plugins/'),
   },
 ]);
 
@@ -69,8 +75,50 @@ const copyText = () => {
   bottom: 50px !important;
 }
 
-:deep() .p-speeddial-action {
-  background: #fff;
-  border: 1px solid #e2e8f0;
+:deep() .p-speeddial {
+  .p-speeddial-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .p-speeddial-action {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      background: #fff;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    .p-speeddial-icon {
+      color: #333;
+    }
+  }
+
+  .p-speeddial-mask {
+    background: transparent;
+  }
 }
 </style>
