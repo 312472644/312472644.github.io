@@ -1,49 +1,67 @@
-name: GitHub Pages
+name: Deploy GitHub Pages
 
 on:
   push:
     branches:
       - main
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-    strategy:
-      matrix:
-        node-version: [18.x]
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      # CI 机器先执行一次 git clone 操作，确保本地有最新的代码
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      #配置 GitHub Pages 部署环境
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 安装 Node.js 环境
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          node-version: 18
+          cache: npm
 
-      - name: 缓存依赖
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      # 安装项目依赖
+      - name: Install Dependencies
+        run: npm ci
 
-      - name: 安装依赖
-        run: npm install
-
+      # 构建项目
       - name: Build
         run: npm run build
 
-      - name: 上传构建产物
-        uses: actions/upload-pages-artifact@v2
+      # 上传构建产物到 GitHub Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: "./docs"
+          path: ./dist
 
-      - name: 发布
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
